@@ -171,6 +171,7 @@
     <Compile Include="Controllers\LevelController.cs" />
     <Compile Include="Controllers\MarketController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\OrdersGetFullController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShipperController.cs" />
     <Compile Include="Global.asax.cs">

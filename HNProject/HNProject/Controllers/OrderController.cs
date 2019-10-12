@@ -43,9 +43,14 @@ namespace HNProject.Controllers
             return Ok(model);
         }
 
+   
+
         [HttpGet, Route("id")]
         public IHttpActionResult GetById(string id)
         {
+            var customer = _context.Orders.Select(x => x.Account);
+
+            var shipper = _context.Orders.Select(x => x.Account1); ;
             try
             {
                 if (id == null)
@@ -60,8 +65,11 @@ namespace HNProject.Controllers
                 return Ok(new
                 {
                     id_order = order.id_order,
-                    shipper_name = (order.Account.id_account == order.id_shipper) ? order.Account.username : "",
-                    customer_name = (order.Account.id_account == order.id_shipper) ? order.Account.username : "",
+                    //shipper_name = (order.Account.id_account == order.id_shipper) ? order.Account.username : "",
+                    //customer_name = (order.Account.id_account == order.id_customer) ? order.Account.username : "",
+                    shipper_name = shipper.Select(x => x.username) ,
+                    customer_name = customer.Select(x => x.username) ,
+                    order_state = order.state,
                     created_date = order.created_date,
                     id_address = order.id_address,
                     orderDetails = order.OrderDetails.Select(__ => new
