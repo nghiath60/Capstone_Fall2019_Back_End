@@ -20,7 +20,7 @@ namespace HNProject.Models
         public Nullable<double> feedback_rate { get; set; }
         public string feedback_content { get; set; }
     
-        public virtual Order Order { get; set; }
         public virtual Role Role { get; set; }
+        public virtual Order Order { get; set; }
     }
 }

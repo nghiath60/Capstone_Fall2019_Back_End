@@ -29,9 +29,19 @@ namespace HNProject.Models
         public Nullable<int> state { get; set; }
         public string id_group_image { get; set; }
         public string id_address { get; set; }
+        public Nullable<int> point { get; set; }
+        public Nullable<double> shipping_cost { get; set; }
+        public Nullable<System.TimeSpan> time_to_ship { get; set; }
+        public string customer_address_id { get; set; }
+        public Nullable<double> dis_cus_to_market { get; set; }
+        public string phone { get; set; }
+        public string name { get; set; }
+        public Nullable<System.DateTime> taking_time { get; set; }
+        public Nullable<System.DateTime> done_time { get; set; }
+        public string order_code { get; set; }
+        public string customer_comment { get; set; }
+        public Nullable<double> system_cost { get; set; }
     
-        public virtual Account Account { get; set; }
-        public virtual Account Account1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FeedBack> FeedBacks { get; set; }
         public virtual GroupImage GroupImage { get; set; }
@@ -39,5 +49,7 @@ namespace HNProject.Models
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Transaction> Transactions { get; set; }
+        public virtual Account Account { get; set; }
+        public virtual Account Account1 { get; set; }
     }
 }

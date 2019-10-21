@@ -15,8 +15,8 @@ namespace HNProject.Models
     public partial class Address
     {
         public string id_address { get; set; }
-        public Nullable<double> @long { get; set; }
         public Nullable<double> lat { get; set; }
+        public Nullable<double> @long { get; set; }
         public string address1 { get; set; }
         public string id_group_address { get; set; }
         public string description { get; set; }

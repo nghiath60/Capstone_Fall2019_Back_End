@@ -5,8 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="98425a74cec74cde95d72b1212baf1a1" Name="Diagram1">
-        <EntityTypeShape EntityType="HNProject.Models.Account" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HNProject.Models.Address" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="HNProject.Models.Brand" Width="1.5" PointX="3.75" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="HNProject.Models.Category" Width="1.5" PointX="9" PointY="12.125" IsExpanded="true" />
         <EntityTypeShape EntityType="HNProject.Models.FavouriteProduct" Width="1.5" PointX="8.25" PointY="15.375" IsExpanded="true" />
@@ -15,7 +13,6 @@
         <EntityTypeShape EntityType="HNProject.Models.GroupImage" Width="1.5" PointX="0.75" PointY="16" IsExpanded="true" />
         <EntityTypeShape EntityType="HNProject.Models.Image" Width="1.5" PointX="3" PointY="19.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HNProject.Models.Level" Width="1.5" PointX="5.25" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HNProject.Models.Order" Width="1.5" PointX="8.25" PointY="18.375" IsExpanded="true" />
         <EntityTypeShape EntityType="HNProject.Models.OrderDetail" Width="1.5" PointX="10.5" PointY="22.25" IsExpanded="true" />
         <EntityTypeShape EntityType="HNProject.Models.Product" Width="1.5" PointX="6" PointY="15.375" IsExpanded="true" />
         <EntityTypeShape EntityType="HNProject.Models.ProductCategory" Width="1.5" PointX="11.25" PointY="16.125" IsExpanded="true" />
@@ -25,27 +22,15 @@
         <EntityTypeShape EntityType="HNProject.Models.SMarketBrand" Width="1.5" PointX="3" PointY="31.25" IsExpanded="true" />
         <EntityTypeShape EntityType="HNProject.Models.SystemConfig" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HNProject.Models.Transaction" Width="1.5" PointX="10.5" PointY="26" IsExpanded="true" />
-        <AssociationConnector Association="HNProject.Models.FK_Account_GroupAddress" ManuallyRouted="false" />
-        <AssociationConnector Association="HNProject.Models.FK_Account_GroupImage" ManuallyRouted="false" />
-        <AssociationConnector Association="HNProject.Models.FK_Account_Role" ManuallyRouted="false" />
-        <AssociationConnector Association="HNProject.Models.FK_FavouriteProduct_Account" ManuallyRouted="false" />
-        <AssociationConnector Association="HNProject.Models.FK_Level_Account" ManuallyRouted="false" />
-        <AssociationConnector Association="HNProject.Models.FK_Order_Account" ManuallyRouted="false" />
-        <AssociationConnector Association="HNProject.Models.FK_Order_Account1" ManuallyRouted="false" />
-        <AssociationConnector Association="HNProject.Models.FK_Address_GroupAddress" ManuallyRouted="false" />
         <AssociationConnector Association="HNProject.Models.FK_ProductCategory_Category" ManuallyRouted="false" />
         <AssociationConnector Association="HNProject.Models.FK_FavouriteProduct_Product" ManuallyRouted="false" />
-        <AssociationConnector Association="HNProject.Models.FK_FeedBack_Order" ManuallyRouted="false" />
         <AssociationConnector Association="HNProject.Models.FK_FeedBack_Role" ManuallyRouted="false" />
         <AssociationConnector Association="HNProject.Models.FK_SMarket_GroupAddress" ManuallyRouted="false" />
         <AssociationConnector Association="HNProject.Models.FK_Grocery_GroupImage" ManuallyRouted="false" />
         <AssociationConnector Association="HNProject.Models.FK_Image_GroupImage" ManuallyRouted="false" />
-        <AssociationConnector Association="HNProject.Models.FK_Order_GroupImage" ManuallyRouted="false" />
         <AssociationConnector Association="HNProject.Models.FK_SMarket_GroupImage" ManuallyRouted="false" />
         <AssociationConnector Association="HNProject.Models.FK_SMarketBrand_GroupImage" ManuallyRouted="false" />
         <AssociationConnector Association="HNProject.Models.FK_Level_Role" ManuallyRouted="false" />
-        <AssociationConnector Association="HNProject.Models.FK_OrderDetail_Order" ManuallyRouted="false" />
-        <AssociationConnector Association="HNProject.Models.FK_Transaction_Order" ManuallyRouted="false" />
         <AssociationConnector Association="HNProject.Models.FK_OrderDetail_Grocery" ManuallyRouted="false" />
         <AssociationConnector Association="HNProject.Models.FK_OrderDetail_SMarket" ManuallyRouted="false" />
         <AssociationConnector Association="HNProject.Models.FK_ProductCategory_Product" ManuallyRouted="false" />
@@ -53,7 +38,23 @@
         <AssociationConnector Association="HNProject.Models.FK_ProductInMarket_SMarket" ManuallyRouted="false" />
         <AssociationConnector Association="HNProject.Models.FK_SMarket_SMarketBrand" ManuallyRouted="false" />
         <AssociationConnector Association="HNProject.Models.ProductBrand" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="HNProject.Models.sysdiagram" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="HNProject.Models.Order" Width="1.5" PointX="11.25" PointY="9.125" />
+        <AssociationConnector Association="HNProject.Models.FK_FeedBack_Order" />
+        <AssociationConnector Association="HNProject.Models.FK_Order_GroupImage" />
+        <AssociationConnector Association="HNProject.Models.FK_OrderDetail_Order" />
+        <AssociationConnector Association="HNProject.Models.FK_Transaction_Order" />
+        <EntityTypeShape EntityType="HNProject.Models.Address" Width="1.5" PointX="3" PointY="5.375" />
+        <AssociationConnector Association="HNProject.Models.FK_Address_GroupAddress" />
+        <EntityTypeShape EntityType="HNProject.Models.Account" Width="1.5" PointX="3" PointY="13.625" />
+        <AssociationConnector Association="HNProject.Models.FK_Account_GroupAddress" />
+        <AssociationConnector Association="HNProject.Models.FK_Account_GroupImage" />
+        <AssociationConnector Association="HNProject.Models.FK_Account_Role" />
+        <AssociationConnector Association="HNProject.Models.FK_FavouriteProduct_Account" />
+        <AssociationConnector Association="HNProject.Models.FK_Level_Account" />
+        <AssociationConnector Association="HNProject.Models.FK_Order_Account" />
+        <AssociationConnector Association="HNProject.Models.FK_Order_Account1" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

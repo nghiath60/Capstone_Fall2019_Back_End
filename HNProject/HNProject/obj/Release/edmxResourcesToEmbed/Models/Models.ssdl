@@ -16,14 +16,16 @@
     <Property Name="id_group_image" Type="varchar" MaxLength="50" />
     <Property Name="id_role" Type="varchar" MaxLength="50" />
     <Property Name="state" Type="int" />
+    <Property Name="fcm_token" Type="nvarchar(max)" />
+    <Property Name="connection_id" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Address">
     <Key>
       <PropertyRef Name="id_address" />
     </Key>
     <Property Name="id_address" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="long" Type="float" />
     <Property Name="lat" Type="float" />
+    <Property Name="long" Type="float" />
     <Property Name="address" Type="nvarchar(max)" />
     <Property Name="id_group_address" Type="varchar" MaxLength="50" />
     <Property Name="description" Type="nvarchar" MaxLength="100" />
@@ -110,6 +112,18 @@
     <Property Name="state" Type="int" />
     <Property Name="id_group_image" Type="varchar" MaxLength="50" />
     <Property Name="id_address" Type="varchar" MaxLength="50" />
+    <Property Name="point" Type="int" />
+    <Property Name="shipping_cost" Type="float" />
+    <Property Name="time_to_ship" Type="time" Precision="7" />
+    <Property Name="customer_address_id" Type="varchar" MaxLength="50" />
+    <Property Name="dis_cus_to_market" Type="float" />
+    <Property Name="phone" Type="varchar" MaxLength="50" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="taking_time" Type="datetime" />
+    <Property Name="done_time" Type="datetime" />
+    <Property Name="order_code" Type="varchar" MaxLength="50" />
+    <Property Name="customer_comment" Type="nvarchar(max)" />
+    <Property Name="system_cost" Type="float" />
   </EntityType>
   <EntityType Name="OrderDetail">
     <Key>
@@ -186,6 +200,16 @@
     <Property Name="id_brand" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="name" Type="nvarchar" MaxLength="50" />
     <Property Name="id_group_image" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="SystemConfig">
     <Key>
@@ -586,6 +610,7 @@
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SMarket" EntityType="Self.SMarket" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SMarketBrand" EntityType="Self.SMarketBrand" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SystemConfig" EntityType="Self.SystemConfig" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Transaction" EntityType="Self.Transaction" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Account_GroupAddress" Association="Self.FK_Account_GroupAddress">

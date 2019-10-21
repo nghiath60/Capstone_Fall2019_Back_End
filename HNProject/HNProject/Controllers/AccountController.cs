@@ -1,5 +1,7 @@
-﻿using HNProject.Models;
+﻿
+using HNProject.Models;
 using HNProject.ViewModels;
+using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -13,6 +15,7 @@ namespace HNProject.Controllers
     [RoutePrefix("Accounts")]
     public class AccountController : BaseController
     {
+
         [HttpGet, Route("")]
         public IHttpActionResult Get()
         {
@@ -26,10 +29,12 @@ namespace HNProject.Controllers
                 x.dob,
                 x.email,
                 x.fb_id,
-                groupAddress = x.GroupAddress.Addresses,
+                Address = x.GroupAddress.Addresses.Select(_ => _.address1),
                 groupImages = x.GroupImage.Images.Select(_ => _.url),
                 roleName = x.Role.name,
-                order = x.Orders,
+                order_id = x.Orders.Select(_ => _.id_order),
+                fcm_token = x.fcm_token,
+                connection_id = x.connection_id,
                 favouriteProducts = x.FavouriteProducts.Select(_ => _.Product.name),
                 levels = x.Levels.Select(_ => _.point),
                 x.state,
@@ -37,7 +42,7 @@ namespace HNProject.Controllers
             }));
         }
 
-        [HttpGet, Route("idAccount")]
+        [HttpGet, Route("idAccount_getAddress")]
         public IHttpActionResult GetAddressByAccount(string id)
         {
             try
@@ -55,7 +60,11 @@ namespace HNProject.Controllers
                 {
                    address =  address.Select(x => new
                     {
-                        x.address1
+                        x.id_address,
+                        x.address1,
+                        x.lat,
+                        x.@long,
+                        
                     })
                 }) ;
             }
@@ -90,14 +99,15 @@ namespace HNProject.Controllers
                     dob = account.dob,
                     email = account.email,
                     fb_id = account.fb_id,
-                    groupAddress = account.GroupAddress.Addresses,
+                    fcm_token = account.fcm_token,
+                    connection_id = account.connection_id,
+                    groupAddress = account.GroupAddress.Addresses.Select(_ => _.address1),
                     groupImages = account.GroupImage.Images.Select(x => x.url),
                     roleName = account.Role.name,
-                    order = account.Orders,
                     favouriteProducts = account.FavouriteProducts.Select(_ => _.Product.name),
                     levels = account.Levels.Select(_ => _.point),
                     account.state,
-                });
+                }); ;
             }
             catch (Exception ex)
             {
@@ -129,6 +139,8 @@ namespace HNProject.Controllers
                     dob = model.dob,
                     email = model.email,
                     fb_id = model.fb_id,
+                    fcm_token = model.fcm_token,
+                    connection_id = model.connection_id,
                     id_group_address = model.id_group_address,
                     id_group_image = model.id_group_image,
                     id_role = model.id_role,
@@ -142,6 +154,60 @@ namespace HNProject.Controllers
                 return InternalServerError(ex);
             }
         }
+
+
+        [HttpPut, Route("id_account_update_FCM")]
+        public IHttpActionResult UpdateFCM(string id,string fcm)
+        {
+            try
+            {
+                var account = _context.Accounts.Find(id);
+                //if (!ModelState.IsValid)
+                //{
+                //    return BadRequest(ModelState);
+                //}
+                if (account == null)
+                {
+                    return NotFound();
+                }
+
+                account.fcm_token = fcm;
+                _context.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpPut, Route("id_account_dpdate_ConnectionID")]
+        public IHttpActionResult UpdateConnectionID(string id, string connection_id)
+        {
+            try
+            {
+                var account = _context.Accounts.Find(id);
+                //if (!ModelState.IsValid)
+                //{
+                //    return BadRequest(ModelState);
+                //}
+                if (account == null)
+                {
+                    return NotFound();
+                }
+
+                account.connection_id = connection_id;
+                _context.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+
+                return InternalServerError(ex);
+            }
+        }
+
 
         [HttpPut, Route("")]
         public IHttpActionResult Put(string id, AccountVM model)
@@ -166,12 +232,15 @@ namespace HNProject.Controllers
                     dob = model.dob,
                     email = model.email,
                     fb_id = model.fb_id,
+                    fcm_token = model.fcm_token,
                     id_group_address = model.id_group_address,
                     id_group_image = model.id_group_image,
                     id_role = model.id_role,
                     state = model.state,
+                    connection_id = model.connection_id,
                 }).State = EntityState.Modified;
                 _context.SaveChanges();
+
                 return Ok();
             }
             catch (Exception ex)

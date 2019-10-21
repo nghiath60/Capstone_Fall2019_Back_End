@@ -197,3 +197,14 @@ D:\Clone_Capstone_Fall2019_Back_end\HNProject\HNProject\obj\Release\HNProject.cs
 D:\Clone_Capstone_Fall2019_Back_end\HNProject\HNProject\obj\Release\HNProject.csproj.CopyComplete
 D:\Clone_Capstone_Fall2019_Back_end\HNProject\HNProject\obj\Release\HNProject.dll
 D:\Clone_Capstone_Fall2019_Back_end\HNProject\HNProject\obj\Release\HNProject.pdb
+D:\Clone_Capstone_Fall2019_Back_end\HNProject\HNProject\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\Clone_Capstone_Fall2019_Back_end\HNProject\HNProject\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+D:\Clone_Capstone_Fall2019_Back_end\HNProject\HNProject\bin\Microsoft.Owin.Security.dll
+D:\Clone_Capstone_Fall2019_Back_end\HNProject\HNProject\bin\Microsoft.AspNet.SignalR.Core.pdb
+D:\Clone_Capstone_Fall2019_Back_end\HNProject\HNProject\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\Clone_Capstone_Fall2019_Back_end\HNProject\HNProject\bin\Microsoft.AspNet.SignalR.SystemWeb.pdb
+D:\Clone_Capstone_Fall2019_Back_end\HNProject\HNProject\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+D:\Clone_Capstone_Fall2019_Back_end\HNProject\HNProject\bin\Microsoft.Owin.Security.xml
+D:\Clone_Capstone_Fall2019_Back_end\HNProject\HNProject\bin\Microsoft.AspNet.SignalR.Client.dll
+D:\Clone_Capstone_Fall2019_Back_end\HNProject\HNProject\bin\Microsoft.AspNet.SignalR.Client.pdb
+D:\Clone_Capstone_Fall2019_Back_end\HNProject\HNProject\bin\Microsoft.AspNet.SignalR.Client.xml

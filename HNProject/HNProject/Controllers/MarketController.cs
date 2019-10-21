@@ -28,12 +28,6 @@ namespace HNProject.Controllers
                 }),
                 images = x.GroupImage.Images.Select(_ => _.url),
                 brand = x.SMarketBrand.name,
-                productInMarket = x.ProductInMarkets.Select(_ => new
-                {
-                    name = _.Product.name,
-                    price = _.Product.price,
-                    qualify = _.Product.qualify
-                })
             }));
         }
 

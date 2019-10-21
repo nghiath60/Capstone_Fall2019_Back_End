@@ -18,7 +18,7 @@ namespace HNProject.Models
         public string id_customer { get; set; }
         public Nullable<System.DateTime> created_date { get; set; }
     
-        public virtual Account Account { get; set; }
         public virtual Product Product { get; set; }
+        public virtual Account Account { get; set; }
     }
 }

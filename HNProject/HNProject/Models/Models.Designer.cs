@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\MyLife\xxx\HNProject\HNProject\Models\Models.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\Clone_Capstone_Fall2019_Back_end\HNProject\HNProject\Models\Models.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

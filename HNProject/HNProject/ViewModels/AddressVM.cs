@@ -8,8 +8,8 @@ namespace HNProject.ViewModels
     public class AddressVM
     {
         public string id_address { get; set; }
-        public Nullable<float> @long { get; set; }
-        public Nullable<float> lat { get; set; }
+        public Nullable<double> @long { get; set; }
+        public Nullable<double> lat { get; set; }
         public string address1 { get; set; }
         public string id_group_address { get; set; }
         public string description { get; set; }

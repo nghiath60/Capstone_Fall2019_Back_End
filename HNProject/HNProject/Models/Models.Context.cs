@@ -25,8 +25,6 @@ namespace HNProject.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Account> Accounts { get; set; }
-        public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<FavouriteProduct> FavouriteProducts { get; set; }
@@ -35,7 +33,6 @@ namespace HNProject.Models
         public virtual DbSet<GroupImage> GroupImages { get; set; }
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<Level> Levels { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
@@ -45,5 +42,9 @@ namespace HNProject.Models
         public virtual DbSet<SMarketBrand> SMarketBrands { get; set; }
         public virtual DbSet<SystemConfig> SystemConfigs { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Address> Addresses { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
     }
 }

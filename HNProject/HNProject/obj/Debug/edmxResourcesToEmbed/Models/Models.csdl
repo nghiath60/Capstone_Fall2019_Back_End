@@ -1,43 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="HNProject.Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="Account">
-    <Key>
-      <PropertyRef Name="id_account" />
-    </Key>
-    <Property Name="id_account" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="dob" Type="DateTime" Precision="0" />
-    <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="fb_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="id_group_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="id_group_image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="id_role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="state" Type="Int32" />
-    <NavigationProperty Name="GroupAddress" Relationship="Self.FK_Account_GroupAddress" FromRole="Account" ToRole="GroupAddress" />
-    <NavigationProperty Name="GroupImage" Relationship="Self.FK_Account_GroupImage" FromRole="Account" ToRole="GroupImage" />
-    <NavigationProperty Name="Role" Relationship="Self.FK_Account_Role" FromRole="Account" ToRole="Role" />
-    <NavigationProperty Name="FavouriteProducts" Relationship="Self.FK_FavouriteProduct_Account" FromRole="Account" ToRole="FavouriteProduct" />
-    <NavigationProperty Name="Levels" Relationship="Self.FK_Level_Account" FromRole="Account" ToRole="Level" />
-    <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Account" FromRole="Account" ToRole="Order" />
-    <NavigationProperty Name="Orders1" Relationship="Self.FK_Order_Account1" FromRole="Account" ToRole="Order" />
-  </EntityType>
-  <EntityType Name="Address">
-    <Key>
-      <PropertyRef Name="id_address" />
-    </Key>
-    <Property Name="id_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="long" Type="Double" />
-    <Property Name="lat" Type="Double" />
-    <Property Name="address1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="id_group_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="priority" Type="Int32" />
-    <Property Name="created_date" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="GroupAddress" Relationship="Self.FK_Address_GroupAddress" FromRole="Address" ToRole="GroupAddress" />
-  </EntityType>
   <EntityType Name="Brand">
     <Key>
       <PropertyRef Name="id_brand" />
@@ -64,8 +26,8 @@
     <Property Name="id_product" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="id_customer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="created_date" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Account" Relationship="Self.FK_FavouriteProduct_Account" FromRole="FavouriteProduct" ToRole="Account" />
     <NavigationProperty Name="Product" Relationship="Self.FK_FavouriteProduct_Product" FromRole="FavouriteProduct" ToRole="Product" />
+    <NavigationProperty Name="Account" Relationship="HNProject.Models.FK_FavouriteProduct_Account" FromRole="FavouriteProduct" ToRole="Account" />
   </EntityType>
   <EntityType Name="FeedBack">
     <Key>
@@ -76,29 +38,29 @@
     <Property Name="id_role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="feedback_rate" Type="Double" />
     <Property Name="feedback_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Order" Relationship="Self.FK_FeedBack_Order" FromRole="FeedBack" ToRole="Order" />
     <NavigationProperty Name="Role" Relationship="Self.FK_FeedBack_Role" FromRole="FeedBack" ToRole="Role" />
+    <NavigationProperty Name="Order" Relationship="HNProject.Models.FK_FeedBack_Order" FromRole="FeedBack" ToRole="Order" />
   </EntityType>
   <EntityType Name="GroupAddress">
     <Key>
       <PropertyRef Name="id_group_address" />
     </Key>
     <Property Name="id_group_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_GroupAddress" FromRole="GroupAddress" ToRole="Account" />
-    <NavigationProperty Name="Addresses" Relationship="Self.FK_Address_GroupAddress" FromRole="GroupAddress" ToRole="Address" />
     <NavigationProperty Name="SMarkets" Relationship="Self.FK_SMarket_GroupAddress" FromRole="GroupAddress" ToRole="SMarket" />
+    <NavigationProperty Name="Addresses" Relationship="HNProject.Models.FK_Address_GroupAddress" FromRole="GroupAddress" ToRole="Address" />
+    <NavigationProperty Name="Accounts" Relationship="HNProject.Models.FK_Account_GroupAddress" FromRole="GroupAddress" ToRole="Account" />
   </EntityType>
   <EntityType Name="GroupImage">
     <Key>
       <PropertyRef Name="id_group" />
     </Key>
     <Property Name="id_group" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_GroupImage" FromRole="GroupImage" ToRole="Account" />
     <NavigationProperty Name="Products" Relationship="Self.FK_Grocery_GroupImage" FromRole="GroupImage" ToRole="Product" />
     <NavigationProperty Name="Images" Relationship="Self.FK_Image_GroupImage" FromRole="GroupImage" ToRole="Image" />
-    <NavigationProperty Name="Orders" Relationship="Self.FK_Order_GroupImage" FromRole="GroupImage" ToRole="Order" />
     <NavigationProperty Name="SMarkets" Relationship="Self.FK_SMarket_GroupImage" FromRole="GroupImage" ToRole="SMarket" />
     <NavigationProperty Name="SMarketBrands" Relationship="Self.FK_SMarketBrand_GroupImage" FromRole="GroupImage" ToRole="SMarketBrand" />
+    <NavigationProperty Name="Orders" Relationship="HNProject.Models.FK_Order_GroupImage" FromRole="GroupImage" ToRole="Order" />
+    <NavigationProperty Name="Accounts" Relationship="HNProject.Models.FK_Account_GroupImage" FromRole="GroupImage" ToRole="Account" />
   </EntityType>
   <EntityType Name="Image">
     <Key>
@@ -122,26 +84,8 @@
     <Property Name="id_account" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="id_role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="point" Type="Double" />
-    <NavigationProperty Name="Account" Relationship="Self.FK_Level_Account" FromRole="Level" ToRole="Account" />
     <NavigationProperty Name="Role" Relationship="Self.FK_Level_Role" FromRole="Level" ToRole="Role" />
-  </EntityType>
-  <EntityType Name="Order">
-    <Key>
-      <PropertyRef Name="id_order" />
-    </Key>
-    <Property Name="id_order" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="created_date" Type="DateTime" Precision="3" />
-    <Property Name="id_customer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="id_shipper" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="state" Type="Int32" />
-    <Property Name="id_group_image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="id_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Account" Relationship="Self.FK_Order_Account" FromRole="Order" ToRole="Account" />
-    <NavigationProperty Name="Account1" Relationship="Self.FK_Order_Account1" FromRole="Order" ToRole="Account" />
-    <NavigationProperty Name="FeedBacks" Relationship="Self.FK_FeedBack_Order" FromRole="Order" ToRole="FeedBack" />
-    <NavigationProperty Name="GroupImage" Relationship="Self.FK_Order_GroupImage" FromRole="Order" ToRole="GroupImage" />
-    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
-    <NavigationProperty Name="Transactions" Relationship="Self.FK_Transaction_Order" FromRole="Order" ToRole="Transaction" />
+    <NavigationProperty Name="Account" Relationship="HNProject.Models.FK_Level_Account" FromRole="Level" ToRole="Account" />
   </EntityType>
   <EntityType Name="OrderDetail">
     <Key>
@@ -155,9 +99,9 @@
     <Property Name="price" Type="Double" />
     <Property Name="quanlity" Type="Double" />
     <Property Name="priority" Type="Int32" />
-    <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
     <NavigationProperty Name="Product" Relationship="Self.FK_OrderDetail_Grocery" FromRole="OrderDetail" ToRole="Product" />
     <NavigationProperty Name="SMarket" Relationship="Self.FK_OrderDetail_SMarket" FromRole="OrderDetail" ToRole="SMarket" />
+    <NavigationProperty Name="Order" Relationship="HNProject.Models.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
   </EntityType>
   <EntityType Name="Product">
     <Key>
@@ -205,9 +149,9 @@
     </Key>
     <Property Name="id_role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_Role" FromRole="Role" ToRole="Account" />
     <NavigationProperty Name="FeedBacks" Relationship="Self.FK_FeedBack_Role" FromRole="Role" ToRole="FeedBack" />
     <NavigationProperty Name="Levels" Relationship="Self.FK_Level_Role" FromRole="Role" ToRole="Level" />
+    <NavigationProperty Name="Accounts" Relationship="HNProject.Models.FK_Account_Role" FromRole="Role" ToRole="Account" />
   </EntityType>
   <EntityType Name="SMarket">
     <Key>
@@ -254,104 +198,8 @@
     <Property Name="id_order" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="money" Type="Double" />
     <Property Name="created_time" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Order" Relationship="Self.FK_Transaction_Order" FromRole="Transaction" ToRole="Order" />
+    <NavigationProperty Name="Order" Relationship="HNProject.Models.FK_Transaction_Order" FromRole="Transaction" ToRole="Order" />
   </EntityType>
-  <Association Name="FK_Account_GroupAddress">
-    <End Role="GroupAddress" Type="Self.GroupAddress" Multiplicity="0..1" />
-    <End Role="Account" Type="Self.Account" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="GroupAddress">
-        <PropertyRef Name="id_group_address" />
-      </Principal>
-      <Dependent Role="Account">
-        <PropertyRef Name="id_group_address" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Account_GroupImage">
-    <End Role="GroupImage" Type="Self.GroupImage" Multiplicity="0..1" />
-    <End Role="Account" Type="Self.Account" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="GroupImage">
-        <PropertyRef Name="id_group" />
-      </Principal>
-      <Dependent Role="Account">
-        <PropertyRef Name="id_group_image" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Account_Role">
-    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
-    <End Role="Account" Type="Self.Account" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Role">
-        <PropertyRef Name="id_role" />
-      </Principal>
-      <Dependent Role="Account">
-        <PropertyRef Name="id_role" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_FavouriteProduct_Account">
-    <End Role="Account" Type="Self.Account" Multiplicity="1" />
-    <End Role="FavouriteProduct" Type="Self.FavouriteProduct" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Account">
-        <PropertyRef Name="id_account" />
-      </Principal>
-      <Dependent Role="FavouriteProduct">
-        <PropertyRef Name="id_customer" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Level_Account">
-    <End Role="Account" Type="Self.Account" Multiplicity="1" />
-    <End Role="Level" Type="Self.Level" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Account">
-        <PropertyRef Name="id_account" />
-      </Principal>
-      <Dependent Role="Level">
-        <PropertyRef Name="id_account" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Order_Account">
-    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
-    <End Role="Order" Type="Self.Order" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Account">
-        <PropertyRef Name="id_account" />
-      </Principal>
-      <Dependent Role="Order">
-        <PropertyRef Name="id_customer" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Order_Account1">
-    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
-    <End Role="Order" Type="Self.Order" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Account">
-        <PropertyRef Name="id_account" />
-      </Principal>
-      <Dependent Role="Order">
-        <PropertyRef Name="id_shipper" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Address_GroupAddress">
-    <End Role="GroupAddress" Type="Self.GroupAddress" Multiplicity="0..1" />
-    <End Role="Address" Type="Self.Address" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="GroupAddress">
-        <PropertyRef Name="id_group_address" />
-      </Principal>
-      <Dependent Role="Address">
-        <PropertyRef Name="id_group_address" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ProductCategory_Category">
     <End Role="Category" Type="Self.Category" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -375,18 +223,6 @@
       </Principal>
       <Dependent Role="FavouriteProduct">
         <PropertyRef Name="id_product" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_FeedBack_Order">
-    <End Role="Order" Type="Self.Order" Multiplicity="1" />
-    <End Role="FeedBack" Type="Self.FeedBack" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Order">
-        <PropertyRef Name="id_order" />
-      </Principal>
-      <Dependent Role="FeedBack">
-        <PropertyRef Name="id_order" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -438,18 +274,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Order_GroupImage">
-    <End Role="GroupImage" Type="Self.GroupImage" Multiplicity="0..1" />
-    <End Role="Order" Type="Self.Order" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="GroupImage">
-        <PropertyRef Name="id_group" />
-      </Principal>
-      <Dependent Role="Order">
-        <PropertyRef Name="id_group_image" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_SMarket_GroupImage">
     <End Role="GroupImage" Type="Self.GroupImage" Multiplicity="0..1" />
     <End Role="SMarket" Type="Self.SMarket" Multiplicity="*" />
@@ -483,32 +307,6 @@
       </Principal>
       <Dependent Role="Level">
         <PropertyRef Name="id_role" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_OrderDetail_Order">
-    <End Role="Order" Type="Self.Order" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Order">
-        <PropertyRef Name="id_order" />
-      </Principal>
-      <Dependent Role="OrderDetail">
-        <PropertyRef Name="id_order" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Transaction_Order">
-    <End Role="Order" Type="Self.Order" Multiplicity="1" />
-    <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Order">
-        <PropertyRef Name="id_order" />
-      </Principal>
-      <Dependent Role="Transaction">
-        <PropertyRef Name="id_order" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -595,8 +393,6 @@
     <End Role="Product" Type="Self.Product" Multiplicity="*" />
   </Association>
   <EntityContainer Name="GoStoreDbContext" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Accounts" EntityType="Self.Account" />
-    <EntitySet Name="Addresses" EntityType="Self.Address" />
     <EntitySet Name="Brands" EntityType="Self.Brand" />
     <EntitySet Name="Categories" EntityType="Self.Category" />
     <EntitySet Name="FavouriteProducts" EntityType="Self.FavouriteProduct" />
@@ -605,7 +401,6 @@
     <EntitySet Name="GroupImages" EntityType="Self.GroupImage" />
     <EntitySet Name="Images" EntityType="Self.Image" />
     <EntitySet Name="Levels" EntityType="Self.Level" />
-    <EntitySet Name="Orders" EntityType="Self.Order" />
     <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
     <EntitySet Name="Products" EntityType="Self.Product" />
     <EntitySet Name="ProductCategories" EntityType="Self.ProductCategory" />
@@ -615,38 +410,6 @@
     <EntitySet Name="SMarketBrands" EntityType="Self.SMarketBrand" />
     <EntitySet Name="SystemConfigs" EntityType="Self.SystemConfig" />
     <EntitySet Name="Transactions" EntityType="Self.Transaction" />
-    <AssociationSet Name="FK_Account_GroupAddress" Association="Self.FK_Account_GroupAddress">
-      <End Role="GroupAddress" EntitySet="GroupAddresses" />
-      <End Role="Account" EntitySet="Accounts" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Account_GroupImage" Association="Self.FK_Account_GroupImage">
-      <End Role="GroupImage" EntitySet="GroupImages" />
-      <End Role="Account" EntitySet="Accounts" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Account_Role" Association="Self.FK_Account_Role">
-      <End Role="Role" EntitySet="Roles" />
-      <End Role="Account" EntitySet="Accounts" />
-    </AssociationSet>
-    <AssociationSet Name="FK_FavouriteProduct_Account" Association="Self.FK_FavouriteProduct_Account">
-      <End Role="Account" EntitySet="Accounts" />
-      <End Role="FavouriteProduct" EntitySet="FavouriteProducts" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Level_Account" Association="Self.FK_Level_Account">
-      <End Role="Account" EntitySet="Accounts" />
-      <End Role="Level" EntitySet="Levels" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Order_Account" Association="Self.FK_Order_Account">
-      <End Role="Account" EntitySet="Accounts" />
-      <End Role="Order" EntitySet="Orders" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Order_Account1" Association="Self.FK_Order_Account1">
-      <End Role="Account" EntitySet="Accounts" />
-      <End Role="Order" EntitySet="Orders" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Address_GroupAddress" Association="Self.FK_Address_GroupAddress">
-      <End Role="GroupAddress" EntitySet="GroupAddresses" />
-      <End Role="Address" EntitySet="Addresses" />
-    </AssociationSet>
     <AssociationSet Name="FK_ProductCategory_Category" Association="Self.FK_ProductCategory_Category">
       <End Role="Category" EntitySet="Categories" />
       <End Role="ProductCategory" EntitySet="ProductCategories" />
@@ -654,10 +417,6 @@
     <AssociationSet Name="FK_FavouriteProduct_Product" Association="Self.FK_FavouriteProduct_Product">
       <End Role="Product" EntitySet="Products" />
       <End Role="FavouriteProduct" EntitySet="FavouriteProducts" />
-    </AssociationSet>
-    <AssociationSet Name="FK_FeedBack_Order" Association="Self.FK_FeedBack_Order">
-      <End Role="Order" EntitySet="Orders" />
-      <End Role="FeedBack" EntitySet="FeedBacks" />
     </AssociationSet>
     <AssociationSet Name="FK_FeedBack_Role" Association="Self.FK_FeedBack_Role">
       <End Role="Role" EntitySet="Roles" />
@@ -675,10 +434,6 @@
       <End Role="GroupImage" EntitySet="GroupImages" />
       <End Role="Image" EntitySet="Images" />
     </AssociationSet>
-    <AssociationSet Name="FK_Order_GroupImage" Association="Self.FK_Order_GroupImage">
-      <End Role="GroupImage" EntitySet="GroupImages" />
-      <End Role="Order" EntitySet="Orders" />
-    </AssociationSet>
     <AssociationSet Name="FK_SMarket_GroupImage" Association="Self.FK_SMarket_GroupImage">
       <End Role="GroupImage" EntitySet="GroupImages" />
       <End Role="SMarket" EntitySet="SMarkets" />
@@ -690,14 +445,6 @@
     <AssociationSet Name="FK_Level_Role" Association="Self.FK_Level_Role">
       <End Role="Role" EntitySet="Roles" />
       <End Role="Level" EntitySet="Levels" />
-    </AssociationSet>
-    <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
-      <End Role="Order" EntitySet="Orders" />
-      <End Role="OrderDetail" EntitySet="OrderDetails" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Transaction_Order" Association="Self.FK_Transaction_Order">
-      <End Role="Order" EntitySet="Orders" />
-      <End Role="Transaction" EntitySet="Transactions" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderDetail_Grocery" Association="Self.FK_OrderDetail_Grocery">
       <End Role="Product" EntitySet="Products" />
@@ -727,5 +474,283 @@
       <End Role="Brand" EntitySet="Brands" />
       <End Role="Product" EntitySet="Products" />
     </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="HNProject.Models.sysdiagram" />
+    <EntitySet Name="Orders" EntityType="HNProject.Models.Order" />
+    <AssociationSet Name="FK_FeedBack_Order" Association="HNProject.Models.FK_FeedBack_Order">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="FeedBack" EntitySet="FeedBacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_GroupImage" Association="HNProject.Models.FK_Order_GroupImage">
+      <End Role="GroupImage" EntitySet="GroupImages" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_Order" Association="HNProject.Models.FK_OrderDetail_Order">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaction_Order" Association="HNProject.Models.FK_Transaction_Order">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <EntitySet Name="Addresses" EntityType="HNProject.Models.Address" />
+    <AssociationSet Name="FK_Address_GroupAddress" Association="HNProject.Models.FK_Address_GroupAddress">
+      <End Role="GroupAddress" EntitySet="GroupAddresses" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <EntitySet Name="Accounts" EntityType="HNProject.Models.Account" />
+    <AssociationSet Name="FK_Account_GroupAddress" Association="HNProject.Models.FK_Account_GroupAddress">
+      <End Role="GroupAddress" EntitySet="GroupAddresses" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Account_GroupImage" Association="HNProject.Models.FK_Account_GroupImage">
+      <End Role="GroupImage" EntitySet="GroupImages" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Account_Role" Association="HNProject.Models.FK_Account_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FavouriteProduct_Account" Association="HNProject.Models.FK_FavouriteProduct_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="FavouriteProduct" EntitySet="FavouriteProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Level_Account" Association="HNProject.Models.FK_Level_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Level" EntitySet="Levels" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Account" Association="HNProject.Models.FK_Order_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Account1" Association="HNProject.Models.FK_Order_Account1">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="id_order" />
+    </Key>
+    <Property Name="id_order" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="created_date" Type="DateTime" Precision="3" />
+    <Property Name="id_customer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_shipper" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="state" Type="Int32" />
+    <Property Name="id_group_image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="point" Type="Int32" />
+    <Property Name="shipping_cost" Type="Double" />
+    <Property Name="time_to_ship" Type="Time" Precision="7" />
+    <Property Name="customer_address_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dis_cus_to_market" Type="Double" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="taking_time" Type="DateTime" Precision="3" />
+    <Property Name="done_time" Type="DateTime" Precision="3" />
+    <Property Name="order_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="customer_comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="system_cost" Type="Double" />
+    <NavigationProperty Name="FeedBacks" Relationship="HNProject.Models.FK_FeedBack_Order" FromRole="Order" ToRole="FeedBack" />
+    <NavigationProperty Name="GroupImage" Relationship="HNProject.Models.FK_Order_GroupImage" FromRole="Order" ToRole="GroupImage" />
+    <NavigationProperty Name="OrderDetails" Relationship="HNProject.Models.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
+    <NavigationProperty Name="Transactions" Relationship="HNProject.Models.FK_Transaction_Order" FromRole="Order" ToRole="Transaction" />
+    <NavigationProperty Name="Account" Relationship="HNProject.Models.FK_Order_Account" FromRole="Order" ToRole="Account" />
+    <NavigationProperty Name="Account1" Relationship="HNProject.Models.FK_Order_Account1" FromRole="Order" ToRole="Account" />
+  </EntityType>
+  <Association Name="FK_FeedBack_Order">
+    <End Type="HNProject.Models.Order" Role="Order" Multiplicity="1" />
+    <End Type="HNProject.Models.FeedBack" Role="FeedBack" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="id_order" />
+      </Principal>
+      <Dependent Role="FeedBack">
+        <PropertyRef Name="id_order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_GroupImage">
+    <End Type="HNProject.Models.GroupImage" Role="GroupImage" Multiplicity="0..1" />
+    <End Type="HNProject.Models.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupImage">
+        <PropertyRef Name="id_group" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="id_group_image" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_Order">
+    <End Type="HNProject.Models.Order" Role="Order" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="HNProject.Models.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="id_order" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="id_order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaction_Order">
+    <End Type="HNProject.Models.Order" Role="Order" Multiplicity="1" />
+    <End Type="HNProject.Models.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="id_order" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="id_order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="id_address" />
+    </Key>
+    <Property Name="id_address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lat" Type="Double" />
+    <Property Name="long" Type="Double" />
+    <Property Name="address1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="id_group_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="priority" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="GroupAddress" Relationship="HNProject.Models.FK_Address_GroupAddress" FromRole="Address" ToRole="GroupAddress" />
+  </EntityType>
+  <Association Name="FK_Address_GroupAddress">
+    <End Type="HNProject.Models.GroupAddress" Role="GroupAddress" Multiplicity="0..1" />
+    <End Type="HNProject.Models.Address" Role="Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupAddress">
+        <PropertyRef Name="id_group_address" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="id_group_address" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="id_account" />
+    </Key>
+    <Property Name="id_account" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="dob" Type="DateTime" Precision="0" />
+    <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="fb_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_group_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_group_image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="state" Type="Int32" />
+    <Property Name="fcm_token" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="connection_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="GroupAddress" Relationship="HNProject.Models.FK_Account_GroupAddress" FromRole="Account" ToRole="GroupAddress" />
+    <NavigationProperty Name="GroupImage" Relationship="HNProject.Models.FK_Account_GroupImage" FromRole="Account" ToRole="GroupImage" />
+    <NavigationProperty Name="Role" Relationship="HNProject.Models.FK_Account_Role" FromRole="Account" ToRole="Role" />
+    <NavigationProperty Name="FavouriteProducts" Relationship="HNProject.Models.FK_FavouriteProduct_Account" FromRole="Account" ToRole="FavouriteProduct" />
+    <NavigationProperty Name="Levels" Relationship="HNProject.Models.FK_Level_Account" FromRole="Account" ToRole="Level" />
+    <NavigationProperty Name="Orders" Relationship="HNProject.Models.FK_Order_Account" FromRole="Account" ToRole="Order" />
+    <NavigationProperty Name="Orders1" Relationship="HNProject.Models.FK_Order_Account1" FromRole="Account" ToRole="Order" />
+  </EntityType>
+  <Association Name="FK_Account_GroupAddress">
+    <End Type="HNProject.Models.GroupAddress" Role="GroupAddress" Multiplicity="0..1" />
+    <End Type="HNProject.Models.Account" Role="Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupAddress">
+        <PropertyRef Name="id_group_address" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="id_group_address" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Account_GroupImage">
+    <End Type="HNProject.Models.GroupImage" Role="GroupImage" Multiplicity="0..1" />
+    <End Type="HNProject.Models.Account" Role="Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupImage">
+        <PropertyRef Name="id_group" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="id_group_image" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Account_Role">
+    <End Type="HNProject.Models.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="HNProject.Models.Account" Role="Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="id_role" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="id_role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FavouriteProduct_Account">
+    <End Type="HNProject.Models.Account" Role="Account" Multiplicity="1" />
+    <End Type="HNProject.Models.FavouriteProduct" Role="FavouriteProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="id_account" />
+      </Principal>
+      <Dependent Role="FavouriteProduct">
+        <PropertyRef Name="id_customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Level_Account">
+    <End Type="HNProject.Models.Account" Role="Account" Multiplicity="1" />
+    <End Type="HNProject.Models.Level" Role="Level" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="id_account" />
+      </Principal>
+      <Dependent Role="Level">
+        <PropertyRef Name="id_account" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Account">
+    <End Type="HNProject.Models.Account" Role="Account" Multiplicity="0..1" />
+    <End Type="HNProject.Models.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="id_account" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="id_customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Account1">
+    <End Type="HNProject.Models.Account" Role="Account" Multiplicity="0..1" />
+    <End Type="HNProject.Models.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="id_account" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="id_shipper" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

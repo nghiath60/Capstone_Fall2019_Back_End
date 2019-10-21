@@ -18,7 +18,7 @@ namespace HNProject.Models
         public string id_role { get; set; }
         public Nullable<double> point { get; set; }
     
-        public virtual Account Account { get; set; }
         public virtual Role Role { get; set; }
+        public virtual Account Account { get; set; }
     }
 }

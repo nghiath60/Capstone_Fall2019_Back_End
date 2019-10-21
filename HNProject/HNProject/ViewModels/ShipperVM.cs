@@ -17,6 +17,14 @@ namespace HNProject.ViewModels
 
         public double getDistance { get; set; }
 
-        //public string id_order { get; set; }
+        public string id_order { get; set; }
+
+        public double? levels { get; set; }
+        public string fcm_token { get; set; }
     }
+
+   
+
+
+
 }

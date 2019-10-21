@@ -14,6 +14,18 @@ namespace HNProject.ViewModels
         public Nullable<int> state { get; set; }
         public string id_group_image { get; set; }
         public string id_address { get; set; }
+        public Nullable<int> point { get; set; }
+        public Nullable<double> shipping_cost { get; set; }
+        public Nullable<System.TimeSpan> time_to_ship { get; set; }
+        public string customer_address_id { get; set; }
+        public double dis_cus_to_market { get; set; }
+        public string phone { get; set; }
+        public string name{ get; set; }
+        public DateTime taking_time { get; set; }
+        public DateTime done_time { get; set; }
+        public string order_code { get; set; }
+        public string customer_comment { get; set; }
+        public Nullable<double> system_cost { get; set; }
         public virtual ICollection<OrderDetailVM> OrderDetails { get; set; }
     }
 

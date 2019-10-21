@@ -15,25 +15,40 @@ namespace HNProject.Controllers
     [RoutePrefix("Products")]
     public class ProductController : BaseController
     {
-        //[HttpGet, Route("")]
-        //public IHttpActionResult Get()
-        //{
-        //    return Ok(_context.Products.Select(x => new
-        //    {
-        //        x.id_product,
-        //        x.name,
-        //        groupImages = x.GroupImage.Images.Select(_ => _.url),
-        //        x.price,
-        //        x.qualify,
-        //        x.description,
-        //        x.type,
-        //        brandName = x.Brands.Select(_ => _.name),
-        //        productCategory = x.ProductCategories.Select(_ => _.Category.name)
-        //    }));
-        //}
+
+        [HttpGet, Route("id_market")]
+        public IHttpActionResult GetAllProductInMarket(string id_market, [FromUri]string searchValue = null, [FromUri]int pageIndex = 1, [FromUri]int pageSize = 10)
+        {
+            try
+            {
+                var paginationImp = new PaginationImp();
+                var query = _context.ProductInMarkets.Where(x => x.id_market == id_market).Select(x => x.Product)
+                            .Where(x => searchValue == null || x.name.Contains(searchValue))
+                            .Select(x => new
+                            {
+                                id_product = x.id_product,
+                                name = x.name,
+                                groupImages = x.GroupImage.Images.Select(_ => _.url),
+                                price = x.price,
+                                qualify = x.qualify,
+                                description = x.description,
+                                type = x.type,
+                                market = _context.SMarkets.FirstOrDefault(xxx => xxx.id_market == id_market).name,
+                                brandName = x.Brands.Select(_ => _.name),
+                                productCategory = x.ProductCategories.Select(_ => _.Category.name)
+                            }).ToList();
+
+                return Ok(paginationImp.ToPagedList(pageIndex, pageSize, query));
+
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
 
         [HttpGet, Route("")]
-        public IHttpActionResult GetAll([FromUri]string searchValue, [FromUri]int pageIndex = 1, [FromUri]int pageSize = 10)
+        public IHttpActionResult GetAll([FromUri]string searchValue = null, [FromUri]int pageIndex = 1, [FromUri]int pageSize = 10)
         {
             try
             {
@@ -64,29 +79,29 @@ namespace HNProject.Controllers
 
 
         [HttpGet, Route("idcate")]
-        public IHttpActionResult GetProductByCategory(string idcate, int pageIndex = 1, int pageSize = 10)
+        public IHttpActionResult GetProductByCategory(string idcate, [FromUri]string searchValue = null, [FromUri]int pageIndex = 1, [FromUri]int pageSize = 10)
         {
             try
             {
                 var paginationImp = new PaginationImp();
-                var query = _context.ProductCategories.Where(x => x.id_cate == idcate).Select(x => x.Product);
-                var model = query.Select(x => new 
-                {
-                    products = new 
-                    {
-                        id_product = x.id_product,
-                        name = x.name,
-                        groupImages = x.GroupImage.Images.Select(_ => _.url),
-                        price = x.price,
-                        qualify = x.qualify,
-                        description = x.description,
-                        type = x.type,
-                        brandName = x.Brands.Select(_ => _.name),
-                        productCategory = x.ProductCategories.Select(_ => _.Category.name)
-                    }
-                });
+                var query = _context.ProductCategories.Where(x => x.id_cate == idcate).Select(x => x.Product)
+                                   .Where(x => searchValue == null || x.name.Contains(searchValue))
+                                   .Select(x => new
+                                   {
+                                       id_product = x.id_product,
+                                       name = x.name,
+                                       groupImages = x.GroupImage.Images.Select(_ => _.url),
+                                       price = x.price,
+                                       qualify = x.qualify,
+                                       description = x.description,
+                                       market = x.ProductInMarkets.Select(xx => xx.SMarket.name),
+                                       type = x.type,
+                                       brandName = x.Brands.Select(_ => _.name),
+                                       productCategory = x.ProductCategories.Select(_ => _.Category.name)
 
-                return Ok(paginationImp.ToPagedList(pageIndex, pageSize, model));
+                                   });
+
+                return Ok(paginationImp.ToPagedList(pageIndex, pageSize, query));
             }
             catch (Exception ex)
             {

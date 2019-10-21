@@ -59,7 +59,6 @@ namespace HNProject.Controllers
             }
         }
 
-
         [HttpPost, Route("")]
         public IHttpActionResult Post(AddressVM model)
         {

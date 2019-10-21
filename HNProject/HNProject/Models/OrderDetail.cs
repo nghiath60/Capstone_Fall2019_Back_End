@@ -22,8 +22,8 @@ namespace HNProject.Models
         public Nullable<double> quanlity { get; set; }
         public Nullable<int> priority { get; set; }
     
-        public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }
         public virtual SMarket SMarket { get; set; }
+        public virtual Order Order { get; set; }
     }
 }

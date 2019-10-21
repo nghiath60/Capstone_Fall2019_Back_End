@@ -17,18 +17,18 @@ namespace HNProject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public GroupAddress()
         {
-            this.Accounts = new HashSet<Account>();
-            this.Addresses = new HashSet<Address>();
             this.SMarkets = new HashSet<SMarket>();
+            this.Addresses = new HashSet<Address>();
+            this.Accounts = new HashSet<Account>();
         }
     
         public string id_group_address { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Account> Accounts { get; set; }
+        public virtual ICollection<SMarket> SMarkets { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Address> Addresses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SMarket> SMarkets { get; set; }
+        public virtual ICollection<Account> Accounts { get; set; }
     }
 }

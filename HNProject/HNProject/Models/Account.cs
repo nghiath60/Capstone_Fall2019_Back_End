@@ -35,6 +35,8 @@ namespace HNProject.Models
         public string id_group_image { get; set; }
         public string id_role { get; set; }
         public Nullable<int> state { get; set; }
+        public string fcm_token { get; set; }
+        public string connection_id { get; set; }
     
         public virtual GroupAddress GroupAddress { get; set; }
         public virtual GroupImage GroupImage { get; set; }

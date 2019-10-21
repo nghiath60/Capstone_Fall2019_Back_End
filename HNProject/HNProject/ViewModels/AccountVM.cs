@@ -19,9 +19,14 @@ namespace HNProject.ViewModels
         public string id_group_image { get; set; }
         public string id_role { get; set; }
         public Nullable<int> state { get; set; }
+
+        public string fcm_token { get; set; }
+        public string connection_id { get; set; }
         public ICollection<FavouriteProduct> FavouriteProducts { get; set; }
 
-        public ICollection<Level> Levels { get; set; }
+        public ICollection<LevelVM> Levels { get; set; }
+
+        
     }
     public class FavouriteProduct
     {
@@ -30,10 +35,21 @@ namespace HNProject.ViewModels
         public Nullable<System.DateTime> created_date { get; set; }
     }
 
-    public class Level
+    public class AddressViewModels
     {
-        public string id_account { get; set; }
-        public string id_role { get; set; }
-        public Nullable<double> point { get; set; }
+        public string Address { get; set; }
+
+        public double Lat { get; set; }
+
+        public double Long { get; set; }
+
+        public string Description { get; set; }
+    }
+
+    public class CMMAddressVM
+    {
+        public string AccountId { get; set; }
+
+        public ICollection<AddressViewModels> Addresses { get; set; }
     }
 }
